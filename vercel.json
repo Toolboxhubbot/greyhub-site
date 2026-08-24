@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/full.lua", "destination": "/api/full" },
+    { "source": "/main.lua", "destination": "/api/full" }
+  ]
+}
