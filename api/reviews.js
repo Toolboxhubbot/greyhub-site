@@ -1,5 +1,10 @@
 const { verify, parseCookie } = require('./auth/_lib');
-const ADMIN_WORD = process.env.ADMIN_WORD || 'appleware-wipe';
+
+const ADMIN_USER = 'word';
+
+function isAdmin(session) {
+  return !!(session && String(session.username || '').toLowerCase() === ADMIN_USER);
+}
 
 function reviewsStore() {
   if (!Array.isArray(globalThis.__appleware_reviews)) globalThis.__appleware_reviews = [];
@@ -15,6 +20,7 @@ module.exports = async function handler(req, res) {
   if (req.method === 'OPTIONS') return res.status(204).end();
 
   let reviews = reviewsStore();
+  const session = verify(parseCookie(req));
 
   if (req.method === 'GET') return res.status(200).json({ reviews });
 
@@ -23,14 +29,12 @@ module.exports = async function handler(req, res) {
     if (typeof body === 'string') { try { body = JSON.parse(body); } catch { body = {}; } }
 
     if (body && body.wipe === true) {
-      const word = String(body.adminWord || '');
-      if (!word || word !== ADMIN_WORD) return res.status(403).json({ error: 'Invalid admin word' });
+      if (!isAdmin(session)) return res.status(403).json({ error: 'Only admin can wipe' });
       globalThis.__appleware_reviews = [];
       if (body.wipeUsers) globalThis.__appleware_users = [];
       return res.status(200).json({ ok: true, reviews: [], wiped: true, usersWiped: !!body.wipeUsers });
     }
 
-    const session = verify(parseCookie(req));
     if (!session) return res.status(401).json({ error: 'Please log in first' });
     const score = Number(body && body.score);
     if (!score || score < 1 || score > 10) return res.status(400).json({ error: 'score 1-10 required' });
@@ -51,18 +55,23 @@ module.exports = async function handler(req, res) {
   if (req.method === 'DELETE') {
     let body = req.body;
     if (typeof body === 'string') { try { body = JSON.parse(body); } catch { body = {}; } }
+
     if (body && body.wipe === true) {
-      const word = String(body.adminWord || '');
-      if (!word || word !== ADMIN_WORD) return res.status(403).json({ error: 'Invalid admin word' });
+      if (!isAdmin(session)) return res.status(403).json({ error: 'Only admin can wipe' });
       globalThis.__appleware_reviews = [];
       if (body.wipeUsers) globalThis.__appleware_users = [];
       return res.status(200).json({ ok: true, reviews: [], wiped: true });
     }
-    const session = verify(parseCookie(req));
+
     const id = (req.query && req.query.id) || (body && body.id) || '';
     if (!id) return res.status(400).json({ error: 'id required' });
     if (!session) return res.status(401).json({ error: 'Please log in first' });
-    reviews = reviews.filter(r => !(r.id === id && r.username === session.username));
+
+    if (isAdmin(session)) {
+      reviews = reviews.filter(r => r.id !== id);
+    } else {
+      reviews = reviews.filter(r => !(r.id === id && r.username === session.username));
+    }
     globalThis.__appleware_reviews = reviews;
     return res.status(200).json({ reviews, ok: true });
   }
