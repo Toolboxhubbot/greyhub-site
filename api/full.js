@@ -1,5 +1,5 @@
 const zlib=require("zlib");
-const parts=[require("./_p0"),require("./_p1"),require("./_p2"),require("./_p3"),require("./_p4")];
+const parts=[require("./_p0"),require("./_p1"),require("./_p2"),require("./_p3"),require("./_p4"),require("./_p5")];
 const b64=parts.join("");
 module.exports=async function handler(req,res){
   res.setHeader("Access-Control-Allow-Origin","*");
