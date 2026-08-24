@@ -1,10 +1,19 @@
 {
   "rewrites": [
-    { "source": "/main.lua", "destination": "/full.lua" }
+    { "source": "/full.lua", "destination": "/api/full" },
+    { "source": "/main.lua", "destination": "/api/full" }
   ],
   "headers": [
     {
       "source": "/full.lua",
+      "headers": [
+        { "key": "Content-Type", "value": "text/plain; charset=utf-8" },
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Cache-Control", "value": "public, max-age=60" }
+      ]
+    },
+    {
+      "source": "/api/full",
       "headers": [
         { "key": "Content-Type", "value": "text/plain; charset=utf-8" },
         { "key": "Access-Control-Allow-Origin", "value": "*" },
