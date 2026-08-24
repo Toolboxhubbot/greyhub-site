@@ -4,95 +4,45 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Appleware — Keyless MM2 Auto Farm</title>
-<meta name="description" content="Keyless Murder Mystery 2 auto farm. Underground, bag-full, anti-fling, auto-rejoin. No keys, no stealers."/>
 <meta name="theme-color" content="#05050c"/>
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <style>
-:root{--bg:#05050c;--glass:rgba(18,10,36,.55);--border:rgba(167,139,250,.12);--text:#f3e8ff}
-*{box-sizing:border-box;-webkit-font-smoothing:antialiased}
-html{scroll-behavior:smooth}
-body{margin:0;font-family:Inter,system-ui,sans-serif;background:radial-gradient(ellipse 120% 80% at 50% -20%,#1a0a2e 0%,var(--bg) 45%,#030208 100%);color:var(--text);min-height:100vh}
-.orb{position:fixed;border-radius:50%;filter:blur(100px);opacity:.45;pointer-events:none;z-index:0;animation:float 20s ease-in-out infinite}
-.orb-1{width:520px;height:520px;background:radial-gradient(circle,#7c3aed 0%,#4c1d95 60%,transparent 70%);top:-180px;left:-120px}
-.orb-2{width:440px;height:440px;background:radial-gradient(circle,#6366f1 0%,#312e81 60%,transparent 70%);bottom:-100px;right:-80px;animation-delay:-7s}
-.orb-3{width:300px;height:300px;background:radial-gradient(circle,#db2777 0%,#831843 60%,transparent 70%);top:40%;left:30%;opacity:.25;animation-delay:-12s}
-@keyframes float{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,20px)}}
-.glass{background:var(--glass);border:1px solid var(--border);backdrop-filter:blur(20px);border-radius:1.25rem}
-.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.75rem 1.35rem;border-radius:.85rem;font-weight:600;border:0;cursor:pointer;text-decoration:none;color:#fff;transition:.2s}
-.btn-p{background:linear-gradient(135deg,#9333ea,#7c3aed)}.btn-p:hover{filter:brightness(1.1);transform:translateY(-2px)}
-.btn-sec{background:rgba(255,255,255,.06);border:1px solid rgba(167,139,250,.25);color:#e9e4f5}
+body{margin:0;font-family:system-ui,sans-serif;background:#05050c;color:#f3e8ff;min-height:100vh}
+.glass{background:rgba(18,10,36,.55);border:1px solid rgba(167,139,250,.12);backdrop-filter:blur(20px);border-radius:1.25rem}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.75rem 1.35rem;border-radius:.85rem;font-weight:600;border:0;cursor:pointer;text-decoration:none;color:#fff}
+.btn-p{background:linear-gradient(135deg,#9333ea,#7c3aed)}.btn-sec{background:rgba(255,255,255,.06);border:1px solid rgba(167,139,250,.25);color:#e9e4f5}
 .btn-discord{background:#5865F2;color:#fff;display:inline-flex;align-items:center;gap:.5rem;padding:.75rem 1.35rem;border-radius:.85rem;font-weight:600;text-decoration:none}
-.btn-discord:hover{filter:brightness(1.12);transform:translateY(-2px)}
 .tab{padding:.4rem 1rem;border-radius:.6rem;font-size:.85rem;cursor:pointer;background:transparent;border:1px solid transparent;color:#a1a1aa}
 .tab.active{background:rgba(139,92,246,.2);border-color:rgba(139,92,246,.4);color:#e9e4f5}
-.title{background:linear-gradient(90deg,#c084fc,#a78bfa,#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-section{position:relative;z-index:10}
-details summary{list-style:none}details summary::-webkit-details-marker{display:none}
-.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s,transform .6s}.reveal.visible{opacity:1;transform:none}
+.title{background:linear-gradient(90deg,#c084fc,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 </style>
 </head>
 <body>
-<div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div>
-<nav class="fixed top-0 inset-x-0 z-50 px-5 py-3" style="background:rgba(5,5,12,.85);backdrop-filter:blur(14px);border-bottom:1px solid rgba(167,139,250,.12)">
+<nav class="fixed top-0 inset-x-0 z-50 px-5 py-3" style="background:rgba(5,5,12,.9);border-bottom:1px solid rgba(167,139,250,.12)">
 <div class="max-w-6xl mx-auto flex items-center justify-between">
 <div class="font-black text-lg title">Appleware</div>
-<div class="hidden sm:flex gap-4 text-sm text-zinc-400">
-<a href="#features" class="hover:text-white">Features</a>
-<a href="#script" class="hover:text-white">Script</a>
-<a href="#reviews" class="hover:text-white">Reviews</a>
-<a href="#faq" class="hover:text-white">FAQ</a>
-</div>
 <div class="flex items-center gap-2">
-<a href="https://discord.gg/dNxZJspvCq" target="_blank" rel="noopener" class="btn-discord" style="padding:.5rem .9rem;font-size:.8rem"><i class="fa-brands fa-discord"></i> Discord</a>
+<a href="https://discord.gg/dNxZJspvCq" target="_blank" class="btn-discord" style="padding:.5rem .9rem;font-size:.8rem">Discord</a>
 <a href="#reviews" class="btn btn-p text-sm py-2 px-3" id="navAuthBtn">Sign in</a>
 </div></div></nav>
 <section class="pt-28 pb-16 px-5 text-center">
-<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold mb-6" style="background:rgba(34,197,94,.12);color:#4ade80;border:1px solid rgba(34,197,94,.3)"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Live · Keyless</div>
-<h1 class="text-4xl sm:text-6xl font-black tracking-tight mb-4 title">Appleware</h1>
-<p class="text-zinc-400 max-w-xl mx-auto mb-6">Keyless MM2 auto farm. One loadstring. No keys, no setup, no babysitting.</p>
-<div class="flex flex-wrap justify-center gap-3">
-<a href="#script" class="btn btn-p"><i class="fa-solid fa-copy"></i> Get Script</a>
-<a href="https://discord.gg/dNxZJspvCq" target="_blank" rel="noopener" class="btn-discord"><i class="fa-brands fa-discord"></i> Discord</a>
-</div></section>
-<section id="features" class="py-16 px-5"><div class="max-w-6xl mx-auto">
-<p class="text-center text-violet-400 text-sm font-semibold tracking-widest mb-2">FEATURES</p>
-<h2 class="text-center text-3xl font-bold mb-10">Packed with power</h2>
-<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-<div class="glass p-6"><h3 class="font-bold mb-2">Underground Farm</h3><p class="text-zinc-500 text-sm">Hidden under the map collecting coins with near-zero delay.</p></div>
-<div class="glass p-6"><h3 class="font-bold mb-2">Bag Full Loop</h3><p class="text-zinc-500 text-sm">Hits capacity? Script loops so farming never stops.</p></div>
-<div class="glass p-6"><h3 class="font-bold mb-2">Anti-Fling</h3><p class="text-zinc-500 text-sm">Velocity stabilizers keep you planted on path.</p></div>
-<div class="glass p-6"><h3 class="font-bold mb-2">Auto Rejoin</h3><p class="text-zinc-500 text-sm">Kicked or error? Teleports back automatically.</p></div>
-<div class="glass p-6"><h3 class="font-bold mb-2">100% Keyless</h3><p class="text-zinc-500 text-sm">Zero keys. Zero linkvertise. Paste and run.</p></div>
-<div class="glass p-6"><h3 class="font-bold mb-2">Anti-AFK</h3><p class="text-zinc-500 text-sm">Keeps the client active so idle-kick does not end farms.</p></div>
-</div></div></section>
-<section id="script" class="py-16 px-5"><div class="max-w-2xl mx-auto text-center">
-<p class="text-violet-400 text-sm font-semibold tracking-widest mb-2">INSTALL</p>
-<h2 class="text-3xl font-bold mb-2">Get the script</h2>
-<p class="text-zinc-500 mb-6">One line. Keyless. Copy and run in your executor.</p>
-<div class="glass overflow-hidden text-left mb-4">
-<div class="flex items-center gap-2 px-4 py-2.5 border-b border-white/5">
-<span class="w-2.5 h-2.5 rounded-full bg-red-500/80"></span>
-<span class="w-2.5 h-2.5 rounded-full bg-amber-500/80"></span>
-<span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80"></span>
-<span class="font-mono text-xs text-zinc-500 ml-1">loadstring.lua</span>
-<span class="ml-auto text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400">KEYLESS</span>
-</div>
-<div class="p-4 bg-black/40 font-mono text-sm"><span style="color:#c084fc">loadstring</span>(game:HttpGet(<span style="color:#86efac">"https://awh.filho.wtf/full.lua"</span>))()</div>
-</div>
-<button type="button" onclick="copyScript()" class="btn btn-p" id="copyBtn"><i class="fa-solid fa-terminal"></i> <span id="copyLabel">Copy loadstring</span></button>
-</div></section>
+<h1 class="text-5xl font-black mb-4 title">Appleware</h1>
+<p class="text-zinc-400 max-w-xl mx-auto mb-6">Keyless MM2 auto farm. One loadstring.</p>
+<a href="#script" class="btn btn-p">Get Script</a>
+<a href="https://discord.gg/dNxZJspvCq" target="_blank" class="btn-discord" style="margin-left:.5rem">Discord</a>
+</section>
+<section id="script" class="py-16 px-5 text-center">
+<h2 class="text-3xl font-bold mb-4">Get the script</h2>
+<div class="glass max-w-xl mx-auto p-4 text-left font-mono text-sm mb-4">loadstring(game:HttpGet("https://awh.filho.wtf/full.lua"))()</div>
+<button type="button" onclick="copyScript()" class="btn btn-p"><span id="copyLabel">Copy loadstring</span></button>
+</section>
 <section id="reviews" class="py-16 px-4">
 <div class="max-w-lg mx-auto text-center">
-<p class="text-violet-400 text-sm font-semibold tracking-widest mb-2">REVIEWS</p>
 <h2 class="text-3xl font-bold mb-2">Rate Appleware</h2>
-<p class="text-zinc-500 mb-8">Create an account to leave a review. Everyone can see them.</p>
-<div class="glass p-6 text-left space-y-5">
-<div class="text-center">
-<div class="text-zinc-500 text-sm mb-1" id="avgLabel">0 ratings · out of 10</div>
-<div class="text-yellow-400 text-2xl" id="avgStars">☆☆☆☆☆</div>
-</div>
+<p class="text-zinc-500 mb-6">Create an account to leave a review.</p>
+<div class="glass p-6 text-left space-y-4">
+<div class="text-center"><div id="avgLabel" class="text-zinc-500 text-sm">0 ratings</div><div id="avgStars" class="text-yellow-400 text-2xl">☆☆☆☆☆</div></div>
 <div id="authBox" class="rounded-xl border border-white/10 bg-black/30 p-4">
 <div id="loggedOut">
 <div class="flex gap-2 mb-4 justify-center">
@@ -100,52 +50,38 @@ details summary{list-style:none}details summary::-webkit-details-marker{display:
 <button type="button" class="tab" id="tabSignup" onclick="showAuthTab('signup')">Sign up</button>
 </div>
 <div id="loginForm" class="space-y-3">
-<div><label class="text-sm text-zinc-400">Username</label><input type="text" id="loginUser" minlength="3" maxlength="24" placeholder="Your username" class="w-full mt-1 px-3 py-2.5 rounded-xl bg-black/40 border border-white/10 text-sm"/></div>
-<div><label class="text-sm text-zinc-400">Password</label><input type="password" id="loginPass" minlength="6" maxlength="64" placeholder="Your password" class="w-full mt-1 px-3 py-2.5 rounded-xl bg-black/40 border border-white/10 text-sm"/></div>
-<button type="button" class="btn btn-p w-full py-2.5" id="loginBtn"><i class="fa-solid fa-right-to-bracket"></i> Log in</button>
+<input type="text" id="loginUser" placeholder="Username" class="w-full px-3 py-2 rounded-xl bg-black/40 border border-white/10 text-sm"/>
+<input type="password" id="loginPass" placeholder="Password" class="w-full px-3 py-2 rounded-xl bg-black/40 border border-white/10 text-sm"/>
+<button type="button" class="btn btn-p w-full" id="loginBtn">Log in</button>
 </div>
 <div id="signupForm" class="space-y-3 hidden">
-<div><label class="text-sm text-zinc-400">Username</label><input type="text" id="signupUser" minlength="3" maxlength="24" placeholder="Choose a username" class="w-full mt-1 px-3 py-2.5 rounded-xl bg-black/40 border border-white/10 text-sm"/></div>
-<div><label class="text-sm text-zinc-400">Password</label><input type="password" id="signupPass" minlength="6" maxlength="64" placeholder="Choose a password" class="w-full mt-1 px-3 py-2.5 rounded-xl bg-black/40 border border-white/10 text-sm"/></div>
-<div><label class="text-sm text-zinc-400">Confirm password</label><input type="password" id="signupPass2" minlength="6" maxlength="64" placeholder="Confirm password" class="w-full mt-1 px-3 py-2.5 rounded-xl bg-black/40 border border-white/10 text-sm"/></div>
-<button type="button" class="btn btn-p w-full py-2.5" id="signupBtn"><i class="fa-solid fa-user-plus"></i> Create account</button>
+<input type="text" id="signupUser" placeholder="Username" class="w-full px-3 py-2 rounded-xl bg-black/40 border border-white/10 text-sm"/>
+<input type="password" id="signupPass" placeholder="Password" class="w-full px-3 py-2 rounded-xl bg-black/40 border border-white/10 text-sm"/>
+<input type="password" id="signupPass2" placeholder="Confirm password" class="w-full px-3 py-2 rounded-xl bg-black/40 border border-white/10 text-sm"/>
+<button type="button" class="btn btn-p w-full" id="signupBtn">Create account</button>
 </div>
 <p id="authMsg" class="text-center text-sm hidden"></p>
 </div>
 <div id="loggedIn" class="hidden">
 <div class="flex items-center gap-3 mb-4">
-<div class="w-10 h-10 rounded-full bg-violet-500/30 flex items-center justify-center font-bold text-sm" id="userAvatar">?</div>
-<div class="flex-1 min-w-0"><div class="font-semibold text-sm truncate" id="userName">—</div><div class="text-xs text-zinc-500">Logged in</div></div>
-<button type="button" class="text-xs text-zinc-500 hover:text-white" id="logoutBtn">Log out</button>
+<div class="w-10 h-10 rounded-full bg-violet-500/30 flex items-center justify-center font-bold" id="userAvatar">?</div>
+<div class="flex-1"><div class="font-semibold" id="userName">—</div><div class="text-xs text-zinc-500">Logged in</div></div>
+<button type="button" class="text-xs text-zinc-500" id="logoutBtn">Log out</button>
 </div>
-<div class="mb-3"><label class="text-sm text-zinc-400">Your score (1-10)</label><div class="grid grid-cols-5 gap-2 mt-2" id="scoreBtns"></div></div>
-<div class="mb-3"><label class="text-sm text-zinc-400">Review (optional)</label><textarea placeholder="What did you think?" rows="3" maxlength="400" class="w-full mt-1 px-3 py-2.5 rounded-xl bg-black/40 border border-white/10 text-sm outline-none resize-none" id="revText"></textarea></div>
-<button type="button" class="btn btn-p w-full py-2.5" id="submitRev"><i class="fa-solid fa-star"></i> <span id="submitLabel">Submit rating</span></button>
-<button type="button" class="btn btn-sec w-full py-2.5 mt-2 hidden" id="deleteMyRev"><i class="fa-solid fa-trash"></i> Delete my review</button>
+<div class="mb-3"><label class="text-sm text-zinc-400">Score 1-10</label><div class="grid grid-cols-5 gap-2 mt-2" id="scoreBtns"></div></div>
+<textarea id="revText" rows="2" maxlength="400" placeholder="Review (optional)" class="w-full px-3 py-2 rounded-xl bg-black/40 border border-white/10 text-sm"></textarea>
+<button type="button" class="btn btn-p w-full mt-2" id="submitRev"><span id="submitLabel">Submit rating</span></button>
+<button type="button" class="btn btn-sec w-full mt-2 hidden" id="deleteMyRev">Delete my review</button>
 </div>
 </div>
 <div id="revMsg" class="text-center text-sm hidden"></div>
-<div class="mt-4 pt-4 border-t border-white/10 text-left">
-<p class="text-xs text-zinc-500 mb-2">Admin · wipe everything</p>
-<div class="flex gap-2 flex-wrap">
-<input type="password" id="adminWord" placeholder="Admin word" class="flex-1 min-w-[140px] px-3 py-2 rounded-xl bg-black/40 border border-white/10 text-sm"/>
-<button type="button" id="adminWipeBtn" class="btn btn-sec text-sm py-2 px-3"><i class="fa-solid fa-skull"></i> Wipe all reviews + users</button>
-</div>
+<div id="adminPanel" class="mt-4 pt-4 border-t border-white/10 text-left hidden">
+<p class="text-xs text-zinc-500 mb-2">Admin (logged in as <b>word</b>) — delete any review or wipe all</p>
+<button type="button" id="adminWipeBtn" class="btn btn-sec text-sm">Wipe all reviews</button>
 <p id="adminMsg" class="text-xs mt-2 hidden"></p>
 </div>
-<div id="revList" class="space-y-3 pt-2 border-t border-white/5"></div>
+<div id="revList" class="space-y-3 pt-2"></div>
 </div></div></section>
-<section id="faq" class="py-16 px-4"><div class="max-w-2xl mx-auto">
-<p class="text-center text-violet-400 text-sm font-semibold tracking-widest mb-2">FAQ</p>
-<h2 class="text-center text-3xl font-bold mb-8">Questions</h2>
-<div class="space-y-3" id="faqList">
-<details class="glass p-0"><summary class="flex items-center justify-between cursor-pointer px-5 py-4 font-semibold">Is it really keyless?<i class="fa-solid fa-chevron-down text-zinc-500 text-xs"></i></summary><div class="px-5 pb-4 text-zinc-500 text-sm">Yes. No keys, no captchas, no forced Discord verify.</div></details>
-<details class="glass p-0"><summary class="flex items-center justify-between cursor-pointer px-5 py-4 font-semibold">Which executors work?<i class="fa-solid fa-chevron-down text-zinc-500 text-xs"></i></summary><div class="px-5 pb-4 text-zinc-500 text-sm">Delta, Wave, Solara, Codex, and most loadstring + HttpGet executors.</div></details>
-<details class="glass p-0"><summary class="flex items-center justify-between cursor-pointer px-5 py-4 font-semibold">Is it safe?<i class="fa-solid fa-chevron-down text-zinc-500 text-xs"></i></summary><div class="px-5 pb-4 text-zinc-500 text-sm">No stealers, no webhooks, no keys. Farm tool only. Use an alt if unsure.</div></details>
-</div></div></section>
-<footer class="border-t border-white/5 py-8 px-5 text-center text-sm text-zinc-600 relative z-10">
-<a href="https://discord.gg/dNxZJspvCq" class="text-violet-400 hover:text-violet-300">Discord</a>
-<span class="mx-2">·</span><span>Appleware · keyless</span>
-</footer>
+<footer class="py-8 text-center text-sm text-zinc-600"><a href="https://discord.gg/dNxZJspvCq" class="text-violet-400">Discord</a> · Appleware</footer>
 <script src="/app.js"></script>
 </body></html>
