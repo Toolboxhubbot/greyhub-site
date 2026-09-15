@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>AppleWare — Access Blocked</title>
+<meta name="theme-color" content="#05050c"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+body{margin:0;font-family:system-ui,sans-serif;background:#05050c;color:#f3e8ff;min-height:100vh;display:flex;align-items:center;justify-content:center}
+.glass{background:rgba(18,10,36,.55);border:1px solid rgba(167,139,250,.12);backdrop-filter:blur(20px);border-radius:1.25rem}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.75rem 1.35rem;border-radius:.85rem;font-weight:600;border:0;cursor:pointer;text-decoration:none;color:#fff;background:linear-gradient(135deg,#9333ea,#7c3aed)}
+.title{background:linear-gradient(90deg,#c084fc,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+</style>
+</head>
+<body>
+<div class="glass max-w-lg mx-4 p-8 text-center">
+  <p class="text-sm text-violet-400 mb-2 tracking-widest uppercase">AppleWare Security Gateway</p>
+  <h1 class="text-3xl font-black title mb-4">Access Blocked</h1>
+  <p class="text-zinc-400 mb-6">Security Breach Detected</p>
+  <div class="text-left text-sm space-y-2 mb-8 bg-black/30 rounded-xl p-4 border border-white/5">
+    <div class="flex justify-between"><span class="text-zinc-500">gateway</span><span>AppleWare Security v3</span></div>
+    <div class="flex justify-between"><span class="text-zinc-500">domain</span><span>awh.filho.wtf</span></div>
+    <div class="flex justify-between"><span class="text-zinc-500">endpoint</span><span>/full.lua</span></div>
+    <div class="flex justify-between"><span class="text-zinc-500">reason</span><span class="text-red-400">Browser</span></div>
+    <div class="flex justify-between"><span class="text-zinc-500">status</span><span class="text-red-400">403 FORBIDDEN</span></div>
+  </div>
+  <p class="text-zinc-400 text-sm mb-6">Script source is not meant to be viewed in a browser.<br/>Use the official loadstring in your executor.</p>
+  <a href="/" class="btn">Open Site</a>
+</div>
+</body>
+</html>
